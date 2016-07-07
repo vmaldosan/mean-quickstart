@@ -1,8 +1,8 @@
 # mean-quickstart
-Skeleton for an app using MongoDB, ExpressJS, Angular 2, NodeJS, Babel and ES. 6
+Skeleton for an app using MongoDB, ExpressJS, Angular 2, NodeJS, Babel and ES6.
 
 Work in progress! 
-Current version: 0.0.1
+Current version: 0.0.2
 
 Got inspiration from many other repos and tutorials, especially:
 * https://github.com/shuhei/babel-angular2-app
