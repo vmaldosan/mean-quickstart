@@ -25,7 +25,9 @@ gulp.task('build', ['copy'], () => {
 
 gulp.task('watch', () => {
 	gulp.watch([path.join(appPath, 'main.js'),
-		path.join(appPath, 'app.component.js')], ['build']);
+		path.join(appPath, 'app.component.js'),
+		'*.html',
+		'*.css'], ['copy', 'build']);
 });
 
 gulp.task('clean', () => {
