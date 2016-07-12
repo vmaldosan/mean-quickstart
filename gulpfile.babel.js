@@ -11,10 +11,12 @@ import glob from 'glob';
 var appPath = 'app/';
 
 gulp.task('copy', () => {
-	gulp.src(['*.html',
-		'*.css',
-		'favicon.ico'])
-	.pipe(gulp.dest('public/'));
+	gulp.src([
+		path.join(appPath, '/**/*.html'),
+		path.join(appPath, '/**/*.css'),
+		appPath + '*.html',
+		appPath + 'favicon.ico'
+	]).pipe(gulp.dest('public/'));
 });
 
 gulp.task('build', ['copy'], () => {
@@ -24,10 +26,10 @@ gulp.task('build', ['copy'], () => {
 });
 
 gulp.task('watch', () => {
-	gulp.watch([path.join(appPath, 'main.js'),
-		path.join(appPath, 'app.component.js'),
-		'*.html',
-		'*.css'], ['copy', 'build']);
+	gulp.watch(['main.js', appPath + '**/*.js'], ['build']);
+	gulp.watch([path.join(appPath, '**/*.html'), 
+		path.join(appPath, '**/*.css'), 
+		path.join(appPath, '*.html')], ['copy']);
 });
 
 gulp.task('clean', () => {

@@ -1,0 +1,12 @@
+<h2>{{title}}</h2>
+<ul class="messages">
+	<li *ngFor="let message of messages"
+		[class.selected]="message === selectedMessage"
+		(click)="onSelect(message)">
+		<span class="subject">{{message.subject}}</span>
+		<span class="created">{{message.created}}</span>
+		<span>{{message.content}}</span>
+	</li>
+</ul>
+<div class="created" *ngIf="messages">{{messages.length}} messages found.</div>
+<div class="created" *ngIf="!messages">0 messages found.</div>
