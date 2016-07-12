@@ -1,7 +1,7 @@
 <h2>{{title}}</h2>
 
 <span class="operations">
-	<button>New</button>
+	<button (click)="onNew()">New</button>
 	<button [disabled]="!selectedMessages || selectedMessages.size !== 1" (click)="onEdit()">Edit</button>
 	<button [disabled]="!selectedMessages || selectedMessages.size < 1">Delete</button>
 </span>
@@ -11,7 +11,7 @@
 		[class.selected]="isSelected(message)"
 		(click)="onSelect(message)">
 		<span class="subject">{{message.subject}}</span>
-		<span class="updated">{{message.updated}}</span>
+		<span class="updated">{{message.updated | date: 'dd/MM/yyyy HH:mm'}}</span>
 		<span>{{message.content}}</span>
 	</li>
 </ul>
@@ -19,17 +19,17 @@
 <span class="caption" *ngIf="!messages">0 messages found.</span>
 
 <span class="operations">
-	<button>New</button>
+	<button (click)="onNew()">New</button>
 	<button [disabled]="!selectedMessages || selectedMessages.size !== 1" (click)="onEdit()">Edit</button>
 	<button [disabled]="!selectedMessages || selectedMessages.size < 1">Delete</button>
 </span>
 
 <div id="editDiv" class="edit" [hidden]="!showEditDiv">
 	<span class="subject">
-		<input [(ngModel)]="message2edit.subject"/>
+		<input [(ngModel)]="message2edit.subject" placeholder="subject" />
 	</span>
 	<span class="content">
-		<textarea [(ngModel)]="message2edit.content"></textarea>
+		<textarea [(ngModel)]="message2edit.content" placeholder="content"></textarea>
 	</span>
 
 	<span class="operations" id="editOpBtn">

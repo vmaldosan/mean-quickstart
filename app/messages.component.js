@@ -63,14 +63,24 @@ export class MessagesComponent implements OnInit {
 	}
 
 	save() {
+		this.message2edit.updated = new Date();
 		this.messageService.saveMessage(this.message2edit)
-			.catch(error => this.error = error);
-		
+			.catch(error => {
+				this.error = error;
+				console.error(error);
+			});
 		this.showEditDiv = false;
-		this.selectedMessages.clear();
+		this.getMessages();
 	}
 
 	cancelEdit() {
 		this.showEditDiv = false;
+	}
+
+	onNew() {
+		this.selectedMessages.clear();
+		this.message2edit.subject = '';
+		this.message2edit.content = '';
+		this.showEditDiv = true;
 	}
 }

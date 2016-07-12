@@ -20,9 +20,8 @@ router.get('/messages', function(req, res, next) {
 
 /* POST/SAVE a Message */
 router.post('/message', function(req, res, next) {
-	console.log(req.body);
 	var message = req.body;
-	if (!message.text || !message.subject) {
+	if (!message.content || !message.subject) {
 		res.status(400);
 		res.json({
 			"error": "Invalid Data"
