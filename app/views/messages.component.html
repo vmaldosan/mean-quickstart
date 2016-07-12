@@ -3,13 +3,13 @@
 <span class="operations">
 	<button (click)="onNew()">New</button>
 	<button [disabled]="!selectedMessages || selectedMessages.size !== 1" (click)="onEdit()">Edit</button>
-	<button [disabled]="!selectedMessages || selectedMessages.size < 1">Delete</button>
+	<button [disabled]="!selectedMessages || selectedMessages.size < 1" (click)="onDelete()">Delete</button>
 </span>
 
 <ul class="messages">
 	<li *ngFor="let message of messages"
-		[class.selected]="isSelected(message)"
-		(click)="onSelect(message)">
+		[class.selected]="isSelected(message._id)"
+		(click)="onSelect(message._id)">
 		<span class="subject">{{message.subject}}</span>
 		<span class="updated">{{message.updated | date: 'dd/MM/yyyy HH:mm'}}</span>
 		<span>{{message.content}}</span>
@@ -21,7 +21,7 @@
 <span class="operations">
 	<button (click)="onNew()">New</button>
 	<button [disabled]="!selectedMessages || selectedMessages.size !== 1" (click)="onEdit()">Edit</button>
-	<button [disabled]="!selectedMessages || selectedMessages.size < 1">Delete</button>
+	<button [disabled]="!selectedMessages || selectedMessages.size < 1" (click)="onDelete()">Delete</button>
 </span>
 
 <div id="editDiv" class="edit" [hidden]="!showEditDiv">

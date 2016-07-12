@@ -15,23 +15,30 @@ export class MessageService {
 		this.http = http;
 	}
 
-	getMessages(): Promise < Message[] > {
+	getMessages(): Promise <Message[]> {
 		return this.http.get(this.messagesUrl + '/messages')
 			.toPromise()
 			.then(response => response.json())
 			.catch(this._handleError);
 	}
 
-	saveMessage(message): Promise<Message>  {
+	saveMessage(message): Promise<Message> {
 		if (message._id) {
 			return this._put(message);
 		} 
 		return this._post(message);
 	}
 
+	deleteMessages(ids: String[]): Promise<String[]> {
+		let deletedMessages = new Array();
+		for (let id of ids) {
+			deletedMessages.push(this._delete(id));
+		}
+		return deletedMessages;
+	}
+
 	_post(message: Message): Promise<Message> {
-		let headers = new Headers({
-			'Content-Type': 'application/json'});
+		let headers = new Headers({ 'Content-Type': 'application/json' });
 
 		return this.http
 			.post(this.messagesUrl + '/message', JSON.stringify(message), {headers: headers})
@@ -41,8 +48,7 @@ export class MessageService {
 	}
 
 	_put(message: Message) {
-		let headers = new Headers();
-		headers.append('Content-Type', 'application/json');
+		let headers = new Headers({ 'Content-Type': 'application/json' });
 
 		let url = `${this.messagesUrl + '/message'}/${message._id}`;
 
@@ -53,8 +59,22 @@ export class MessageService {
 			.catch(this._handleError);
 	}
 
+	_delete(id: String): Promise<Object> {
+		let headers = new Headers({ 'Content-Type': 'application/json' });
+
+        let url = `${this.messagesUrl + '/message'}/${id}`;
+
+		return this.http
+			.delete(url)
+			.toPromise()
+			.then(() => id)
+			.catch(this._handleError);
+	}
+
 	_handleError(error: any) {
-		console.error('An error occurred', error);
-		return Promise.reject(error.message || error);
+		let errMsg = (error.message) ? error.message :
+			error.status ? `${error.status} - ${error.statusText}` : 'Server error';
+		console.error('An error occurred', errMsg);
+		return Promise.reject(errMsg);
 	}
 }

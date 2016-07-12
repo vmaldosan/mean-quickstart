@@ -41,18 +41,24 @@ router.post('/message', function(req, res, next) {
 router.put('/message/:id', function(req, res, next) {
 	var message = req.body;
 	var updObj = {};
+	var invalid = false;
 	if (message.subject) {
 		updObj.subject = message.subject;
+	} else {
+		invalid = true;
 	}
 	if (message.content) {
 		updObj.content = message.content;
+	} else {
+		invalid = true;
 	}
-	if (!updObj) {
+	if (invalid) {
 		res.status(400);
 		res.json({
 			"error": "Invalid Data"
 		});
 	} else {
+		updObj.updated = message.updated;
 		db.messages.update({
 			_id: mongojs.ObjectId(req.params.id)
 		}, updObj, {}, function(err, result) {
@@ -63,6 +69,19 @@ router.put('/message/:id', function(req, res, next) {
 			}
 		});
 	}
+});
+
+/* DELETE a Message */
+router.delete('/message/:id', function(req, res) {
+	db.messages.remove({
+		_id: mongojs.ObjectId(req.params.id)
+	}, '', function(err, result) {
+		if (err) {
+			res.send(err);
+		} else {
+			res.json(result);
+		}
+	});
 });
 
 module.exports = router;
