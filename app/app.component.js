@@ -38,5 +38,5 @@ import { MessageService } from './message.service';
 ])
 
 export class AppComponent {
-	title = 'Forum App';
+	title = 'MEAN app quickstart';
 }

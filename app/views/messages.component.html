@@ -1,12 +1,39 @@
 <h2>{{title}}</h2>
+
+<span class="operations">
+	<button>New</button>
+	<button [disabled]="!selectedMessages || selectedMessages.size !== 1" (click)="onEdit()">Edit</button>
+	<button [disabled]="!selectedMessages || selectedMessages.size < 1">Delete</button>
+</span>
+
 <ul class="messages">
 	<li *ngFor="let message of messages"
-		[class.selected]="message === selectedMessage"
+		[class.selected]="isSelected(message)"
 		(click)="onSelect(message)">
 		<span class="subject">{{message.subject}}</span>
-		<span class="created">{{message.created}}</span>
+		<span class="updated">{{message.updated}}</span>
 		<span>{{message.content}}</span>
 	</li>
 </ul>
-<div class="created" *ngIf="messages">{{messages.length}} messages found.</div>
-<div class="created" *ngIf="!messages">0 messages found.</div>
+<span class="caption" *ngIf="messages">{{messages.length}} messages found.</span>
+<span class="caption" *ngIf="!messages">0 messages found.</span>
+
+<span class="operations">
+	<button>New</button>
+	<button [disabled]="!selectedMessages || selectedMessages.size !== 1" (click)="onEdit()">Edit</button>
+	<button [disabled]="!selectedMessages || selectedMessages.size < 1">Delete</button>
+</span>
+
+<div id="editDiv" class="edit" [hidden]="!showEditDiv">
+	<span class="subject">
+		<input [(ngModel)]="message2edit.subject"/>
+	</span>
+	<span class="content">
+		<textarea [(ngModel)]="message2edit.content"></textarea>
+	</span>
+
+	<span class="operations" id="editOpBtn">
+		<button (click)="save()">Save</button>
+		<button (click)="cancelEdit()">Cancel</button>
+	</span>
+</div>

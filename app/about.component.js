@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'about',
-  template: '<h2>About us</h2>'
+	selector: 'about',
+	templateUrl: 'views/about.component.html',
+	styleUrls: ['styles/styles.css']
 })
 export class AboutComponent { }

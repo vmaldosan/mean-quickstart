@@ -11,10 +11,14 @@ import { MessageService } from './message.service';
 })
 
 export class MessagesComponent implements OnInit {
+	title = "Messages board"
 	messages: Message[];
-	selectedMsg: Message;
+	selectedMessages: Message[];
 	router: Router;
 	messageService: MessageService;
+	showEditDiv: Boolean;
+	message2edit: Message;
+	error: any;
 
 	constructor(
 		@Inject(Router) router,
@@ -22,6 +26,8 @@ export class MessagesComponent implements OnInit {
 
 		this.router = router;
 		this.messageService = messageService;
+		this.selectedMessages = new Set();
+		this.message2edit = new Message();
 	}
 
 	getMessages() {
@@ -34,5 +40,37 @@ export class MessagesComponent implements OnInit {
 		this.getMessages();
 	}
 	
-	onSelect(message: Message) { this.selectedMsg = message; }
+	isSelected(msg) {
+		if (!this.selectedMessages) return false;
+		return this.selectedMessages.has(msg);
+	}
+
+	onSelect(message: Message) {
+		// Do nothing if we are editing a message.
+		if (this.showEditDiv) {
+			return;
+		}
+		if (this.selectedMessages.has(message)) {
+			this.selectedMessages.delete(message);
+		} else {
+			this.selectedMessages.add(message); 
+		}
+	}
+
+	onEdit() {
+		this.showEditDiv = true;
+		this.message2edit = this.selectedMessages.values().next().value;
+	}
+
+	save() {
+		this.messageService.saveMessage(this.message2edit)
+			.catch(error => this.error = error);
+		
+		this.showEditDiv = false;
+		this.selectedMessages.clear();
+	}
+
+	cancelEdit() {
+		this.showEditDiv = false;
+	}
 }

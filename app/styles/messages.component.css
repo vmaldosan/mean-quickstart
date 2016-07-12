@@ -1,9 +1,7 @@
 .selected {
 	background-color: #CFD8DC !important;
-	color: white;
 }
 .messages {
-	margin: 0 0 2em 0;
 	list-style-type: none;
 	padding: 0;
 }
@@ -13,7 +11,6 @@
 	left: 0;
 	background-color: #EEE;
 	margin: .5em;
-	padding: .3em 0;
 	border-radius: 4px;
 	width: 60%;
 	padding: 0.5em 0.7em 0.5em 0.7em;
@@ -25,11 +22,7 @@
 .messages li:hover {
 	color: #607D8B;
 	background-color: #DDD;
-	left: .1em;
-}
-.messages .text {
-	position: relative;
-	top: -3px;
+	top: .1em;
 }
 .messages .subject {
 	display: inline-block;
@@ -45,8 +38,62 @@
 	border-radius: 4px 4px 0 0;
 	width: 100%;
 }
-.messages .created {
+.messages .text {
+	position: relative;
+	top: -3px;
+}
+.messages .updated {
 	font-size: small;
 	font-style: italic;
+	display: block;
+	margin: 0 0 .5em;
+}
+.caption {
+	font-size: small;
+	display: block;
+	margin: 2em .5em;
+}
+.operations {
+	margin: 2em .5em;
+	left: -11px;
+}
+.edit {
+	width: 62%;
+	margin: 2em .5em;
+	padding: 0;
+	position: relative;
+	left: 0;
+	background-color: #EEE;
+	border-radius: 4px;
+}
+.edit .subject {
+	display: inline-block;
+	background-color: #607D8B;
+	line-height: 1em;
+	position: relative;
+	top: -7px;
+	margin-right: .8em;
+	border-radius: 4px 4px 0 0;
+	width: 100%;
+	font-size: small;
+}
+.edit .content {
+	position: relative;
+	display: block;
+	width: 60%;
+}
+input {
+	width: 98%;
+	background-color: #607D8B;
+	margin: .5em;
+	color: white;
+}
+textarea {
+	width: 163%;
+	background-color: #EEE;
+	margin: .5em;
+	max-width: 163%;
+}
+.editOpBtn {
 	display: block;
 }
