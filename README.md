@@ -1,3 +1,5 @@
+[![Dependency Status](https://david-dm.org/vmaldosan/mean-quickstart.svg)](https://david-dm.org/vmaldosan/mean-quickstart)
+
 # mean-quickstart
 Skeleton for an app using MongoDB, ExpressJS, Angular 2, NodeJS, Babel-Gulp and ES6.
 
