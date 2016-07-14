@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/vmaldosan/mean-quickstart.svg?branch=master)](https://travis-ci.org/vmaldosan/mean-quickstart)
+[![Build status](https://ci.appveyor.com/api/projects/status/4ekct3amec3a84jy?svg=true)](https://ci.appveyor.com/project/vmaldosan/mean-quickstart)
 [![Dependency Status](https://david-dm.org/vmaldosan/mean-quickstart.svg)](https://david-dm.org/vmaldosan/mean-quickstart)
 
 # mean-quickstart
