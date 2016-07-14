@@ -6,7 +6,7 @@
 Skeleton for an app using MongoDB, ExpressJS, Angular 2, NodeJS, Babel-Gulp and ES6.
 
 Work in progress! 
-Current version: 1.0.0
+Current version: 1.0.0-rc.4
 
 Got inspiration from many other repos and tutorials, especially:
 * https://github.com/shuhei/babel-angular2-app

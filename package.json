@@ -1,6 +1,6 @@
 {
 	"name": "mean-quickstart",
-	"version": "1.0.0",
+	"version": "1.0.0-rc.4",
 	"description": "Skeleton for an app using MongoDB, ExpressJS, Angular 2, NodeJS, Babel and ES6",
 	"scripts": {
 		"start": "gulp",
